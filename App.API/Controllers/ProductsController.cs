@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.API.Controllers;
 
-public class ProductController(IProductService productService) : CustomBaseController
+public class ProductsController(IProductService productService) : CustomBaseController
 {
     [HttpGet]
     public async Task<IActionResult> GetAll() => CreateActionResult(await productService.GetAllListAsync());
@@ -19,6 +19,12 @@ public class ProductController(IProductService productService) : CustomBaseContr
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, UpdateProductsRequest request) => CreateActionResult(await productService.UpdateAsync(id, request));
+
+    //[HttpPut("updateStock")]
+    //public async Task<IActionResult> UpdateStock(UpdateProductStockRequest request) => CreateActionResult(await productService.UpdateStockAsync(request));
+
+    [HttpPatch("stock")]
+    public async Task<IActionResult> UpdateStock(UpdateProductStockRequest request) => CreateActionResult(await productService.UpdateStockAsync(request));
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id) => CreateActionResult(await productService.DeleteAsync(id));
