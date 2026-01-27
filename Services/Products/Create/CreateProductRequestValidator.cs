@@ -1,7 +1,7 @@
 ﻿using App.Repositories.Products;
 using FluentValidation;
 
-namespace App.Services.Products;
+namespace App.Services.Products.Create;
 public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
 {
     private readonly IProductRepository _productRepository;
