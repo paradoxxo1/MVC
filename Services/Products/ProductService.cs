@@ -18,7 +18,7 @@ public class ProductService(IProductRepository productRepository,
     {
         var products = await productRepository.GetTopPriceProductAsync(count);
 
-        var productsAsDto = products.Select(p => new ProductDto(p.Id, p.Name, p.Price, p.Stock)).ToList();
+        var productsAsDto = mapper.Map<List<ProductDto>>(products);
 
         return new ServiceResult<List<ProductDto>>()
         {
@@ -100,12 +100,7 @@ public class ProductService(IProductRepository productRepository,
         //}
         #endregion
 
-        var product = new Product()
-        {
-            Name = request.Name,
-            Price = request.Price,
-            Stock = request.Stock,
-        };
+        var product = mapper.Map<Product>(request);
 
         await productRepository.AddAsync(product);
         await unitOfWork.SaveChangeAsync();
@@ -128,9 +123,11 @@ public class ProductService(IProductRepository productRepository,
             return ServiceResult.Fail("ürün ismi veritabanında bulunmaktadır.", HttpStatusCode.BadRequest);
         }
 
-        product.Name = request.Name;
-        product.Price = request.Price;
-        product.Stock = request.Stock;
+        //product.Name = request.Name;
+        //product.Price = request.Price;
+        //product.Stock = request.Stock;
+
+        product = mapper.Map(request, product);
 
         productRepository.Update(product);
         await unitOfWork.SaveChangeAsync();
