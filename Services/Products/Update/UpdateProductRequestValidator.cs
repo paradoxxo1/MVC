@@ -11,6 +11,9 @@ public class UpdateProductRequestValidator : AbstractValidator<UpdateProductsReq
             .Length(3, 10).WithMessage("Ürün ismi 3-10 karakter arasında olmalıdır.");
 
 
+        RuleFor(x => x.CategoryId)
+            .GreaterThan(0).WithMessage("Ürün kategori değeri 0'dan büyük olmalıdır.");
+
         RuleFor(x => x.Price)
             .GreaterThan(0).WithMessage("Ürün fiyatı 0'dan büyük olmalıdır.");
 

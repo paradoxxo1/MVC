@@ -78,9 +78,7 @@ public class ProductService(IProductRepository productRepository,
     public async Task<ServiceResult<CreateProductResponse>> CreateAsync(CreateProductRequest request)
     {
         //throw new CriticalException("kritik hata");
-
         //throw new Exception("denemelik hata");
-
         // asenkron validation manuel bussines kontrol
 
         var anyProduct = await productRepository.Where(x => x.Name == request.Name).AnyAsync();
