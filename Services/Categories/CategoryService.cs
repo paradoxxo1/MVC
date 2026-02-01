@@ -78,21 +78,16 @@ public class CategoryService(ICategoryRepository categoryRepository, IUnitOfWork
 
     public async Task<ServiceResult> UpdateAsync(int id, UpdateCategoryRequest request)
     {
-        var category = await categoryRepository.GetByIdAsync(id);
 
-        if (category is null)
-        {
-            return ServiceResult.Fail("Güncellenecek Kategori bulunamadı", HttpStatusCode.NotFound);
-        }
-
-        var isCategoryNameExist = await categoryRepository.Where(x => x.Name == request.Name && x.Id != category.Id).AnyAsync();
+        var isCategoryNameExist = await categoryRepository.Where(x => x.Name == request.Name && x.Id != id).AnyAsync();
 
         if (isCategoryNameExist)
         {
             return ServiceResult.Fail("kategori ismi veritabanında bulunmaktadır", HttpStatusCode.BadRequest);
         }
 
-        category = mapper.Map(request, category);
+        var category = mapper.Map<Category>(request);
+        category.Id = id;
 
         categoryRepository.Update(category);
         await unitOfWork.SaveChangeAsync();
@@ -105,12 +100,8 @@ public class CategoryService(ICategoryRepository categoryRepository, IUnitOfWork
     {
         var category = await categoryRepository.GetByIdAsync(id);
 
-        if (category is null)
-        {
-            return ServiceResult.Fail("kategori bulunamadı", HttpStatusCode.NotFound);
-        }
 
-        categoryRepository.Delete(category);
+        categoryRepository.Delete(category!);
         await unitOfWork.SaveChangeAsync();
 
         return ServiceResult.Success(HttpStatusCode.NoContent);

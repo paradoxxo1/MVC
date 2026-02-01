@@ -1,5 +1,6 @@
 ﻿using App.Services.Categories;
 using App.Services.ExceptionHandler;
+using App.Services.Filters;
 using App.Services.Products;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -17,6 +18,8 @@ public static class ServiceExtensions
 
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped(typeof(NotFoundFiler<,>));
+
         services.AddFluentValidationAutoValidation();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
