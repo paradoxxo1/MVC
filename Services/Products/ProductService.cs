@@ -1,4 +1,5 @@
-﻿using App.Repositories;
+﻿using App.Application.Contracts.Persistence;
+using App.Repositories;
 using App.Repositories.Products;
 using App.Services.Products.Create;
 using App.Services.Products.Update;

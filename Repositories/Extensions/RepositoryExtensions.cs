@@ -1,4 +1,5 @@
-﻿using App.Repositories.Categories;
+﻿using App.Application.Contracts.Persistence;
+using App.Repositories.Categories;
 using App.Repositories.Interceptors;
 using App.Repositories.Products;
 using Microsoft.EntityFrameworkCore;

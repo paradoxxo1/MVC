@@ -1,4 +1,5 @@
-﻿using App.Repositories;
+﻿using App.Application.Contracts.Persistence;
+using App.Repositories;
 using App.Repositories.Categories;
 using App.Services.Categories.Create;
 using App.Services.Categories.Dto;
