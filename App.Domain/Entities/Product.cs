@@ -1,5 +1,6 @@
-﻿
-namespace App.Domain.Entities.Common;
+﻿using App.Domain.Entities.Common;
+
+namespace App.Domain.Entities;
 public class Product : BaseEntity<int>, IAuditEntity
 {
     public string Name { get; set; } = default!;
