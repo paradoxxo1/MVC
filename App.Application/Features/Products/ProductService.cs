@@ -4,13 +4,13 @@ using App.Application.Features.Products.Dto;
 using App.Application.Features.Update;
 using App.Application.Features.UpdateStock;
 using App.Domain.Entities;
-using App.Domain.Entities.Common;
 using AutoMapper;
 using FluentValidation;
 using System.Net;
 
 namespace App.Application.Features.Products;
-public class ProductService(IProductRepository productRepository,
+public class ProductService(
+    IProductRepository productRepository,
     IUnitOfWork unitOfWork,
     IValidator<CreateProductRequest> createProductRequestValidator,
     IMapper mapper) : IProductService
