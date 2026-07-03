@@ -1,8 +1,8 @@
-﻿using App.Repositories.Products;
+﻿using App.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace App.Repositories.Categories;
+namespace App.Persistence.Categories;
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
